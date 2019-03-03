@@ -1,5 +1,5 @@
 interface IPartRecyclerLook<T> {
-    fun lookFor(entry: T): T?
+    fun lookFor(entry: T): T
 }
 
 interface IPartRecyclerAdd<T> {
