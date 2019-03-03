@@ -1,6 +1,6 @@
 class Recycler(
-        val fontRecycler: FontRecyclerI,
-        val extrasRecycler: ExtrasRecyclerI,
+        val fontRecycler: FontRecycler,
+        val extrasRecycler: ExtrasRecycler,
         val myCharacteresRecycler: MyCharacterRecycler
 ) : IPartRecyclerAdd<MyCharacter> {
     override fun addNew(entry: MyCharacter): MyCharacter {
@@ -26,7 +26,7 @@ class Recycler(
     }
 }
 
-class FontRecyclerI(val fonts: ArrayList<String>) : PartRecycler<String>(fonts){
+class FontRecycler(val fonts: ArrayList<String>) : PartRecycler<String>(fonts){
     override fun lookFor(entry: String): String? {
         return fonts.firstOrNull {
             it == entry
@@ -34,7 +34,7 @@ class FontRecyclerI(val fonts: ArrayList<String>) : PartRecycler<String>(fonts){
     }
 }
 
-class ExtrasRecyclerI(val extras: ArrayList<Extras>) : PartRecycler<Extras>(extras) {
+class ExtrasRecycler(val extras: ArrayList<Extras>) : PartRecycler<Extras>(extras) {
     override fun lookFor(entry: Extras): Extras? {
         return extras.firstOrNull {
             it.font == entry.font &&
