@@ -18,7 +18,7 @@ class FontRecycler(val fonts: ArrayList<String>) : PartRecycler<String>(fonts){
     }
 }
 
-class ExtrasRecycler(val extras: ArrayList<Extras>, var fontRecycler: FontRecycler) : PartRecycler<Extras>(extras) {
+class ExtrasRecycler(val extras: ArrayList<Extras>, var fontRecycler:  PartRecycler<String>) : PartRecycler<Extras>(extras) {
     override fun lookFor(entry: Extras): Extras {
         extras.firstOrNull {
             it.font == entry.font &&
@@ -32,7 +32,7 @@ class ExtrasRecycler(val extras: ArrayList<Extras>, var fontRecycler: FontRecycl
     }
 }
 
-class MyCharacterRecycler(val characters: ArrayList<MyCharacter>, var extrasRecycler: ExtrasRecycler) : PartRecycler<MyCharacter>(characters){
+class MyCharacterRecycler(val characters: ArrayList<MyCharacter>, var extrasRecycler: PartRecycler<Extras>) : PartRecycler<MyCharacter>(characters){
 
     override fun lookFor(entry: MyCharacter): MyCharacter {
         characters.firstOrNull {
