@@ -6,9 +6,9 @@ class Recycler(
     }
 }
 
-class FontRecycler(val fonts: ArrayList<String>) : PartRecycler<String>(fonts){
+class FontRecycler(fonts: ArrayList<String>) : PartRecycler<String>(fonts){
     override fun lookFor(entry: String): String {
-        fonts.firstOrNull {
+        entries.firstOrNull {
             it == entry
         }?.let {
             return it
@@ -18,9 +18,9 @@ class FontRecycler(val fonts: ArrayList<String>) : PartRecycler<String>(fonts){
     }
 }
 
-class ExtrasRecycler(val extras: ArrayList<Extras>, var fontRecycler:  PartRecycler<String>) : PartRecycler<Extras>(extras) {
+class ExtrasRecycler(extras: ArrayList<Extras>, var fontRecycler:  PartRecycler<String>) : PartRecycler<Extras>(extras) {
     override fun lookFor(entry: Extras): Extras {
-        extras.firstOrNull {
+        entries.firstOrNull {
             it.font == entry.font &&
                     it.size == entry.size &&
                     it.color.value == entry.color.value
@@ -32,10 +32,10 @@ class ExtrasRecycler(val extras: ArrayList<Extras>, var fontRecycler:  PartRecyc
     }
 }
 
-class MyCharacterRecycler(val characters: ArrayList<MyCharacter>, var extrasRecycler: PartRecycler<Extras>) : PartRecycler<MyCharacter>(characters){
+class MyCharacterRecycler(characters: ArrayList<MyCharacter>, var extrasRecycler: PartRecycler<Extras>) : PartRecycler<MyCharacter>(characters){
 
     override fun lookFor(entry: MyCharacter): MyCharacter {
-        characters.firstOrNull {
+        entries.firstOrNull {
             it.representation == entry.representation &&
                     it.extras.font == entry.extras.font &&
                     it.extras.size == entry.extras.size &&
